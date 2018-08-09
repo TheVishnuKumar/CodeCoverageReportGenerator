@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!-- Meta Tag -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- SEO -->
+		<meta name="description" content="The application provides the view of all code coverage from the organization and can generate excel sheet of all code coverage.">
+		<meta name="author" content="Vishnu Kumar">
+		<meta name="url">
+		<meta name="copyright" content="0to1Code.com">
+		<meta name="robots" content="index,follow">
+		<title>0to1Code - Code Coverage Report Generator</title>
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAA
+               AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               AAAAAAAAAAAAAAAAAAAAAAAAAPyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyy
+               PwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8i/LI/M/yyPzP8sj8z/LI/M/yyPzP8sj8z/LI/
+               M/yyPzD8sj8w/LI/MPyyPzD8sj8w/LI/MPyyPzH8sj8l/LI/v/yyP8v8sj+8/LI/vfyyP738sj+9
+               /LI/vPyyP8T8sj/p/LI/7vyyP+78sj/u/LI/7vyyP+78sj/v/LI/0PyyP878sj9S/LI/DvyyPxD8
+               sj8O/LI/D/yyPw/8sj80/LI/6PyyP//8sj///LI///yyP//8sj///LI///yyP+f8sj/M/LI/RPyy
+               PwD8sj8T/LI/TfyyPzj8sj8A/LI/JPyyP+b8sj///LI//vyyP9H8sj/0/LI///yyP//8sj/m/LI/
+               zPyyP0X8sj8A/LI/Y/yyP0P8sj9o/LI/LfyyPyL8sj/m/LI///yyP/38sj+G/LI/4vyyP//8sj//
+               /LI/5vyyP8z8sj9F/LI/APyyP3D8sj8X/LI/UfyyPz38sj8h/LI/5vyyP//8sj/9/LI/g/yyP+H8
+               sj///LI///yyP+b8sj/M/LI/RfyyPwD8sj83/LI/b/yyP2b8sj8O/LI/JPyyP+b8sj///LI//vyy
+               P7b8sj/u/LI///yyP//8sj/m/LI/zPyyP0L8sj8A/LI/APyyPwf8sj8B/LI/APyyPyH8sj/l/LI/
+               //yyP//8sj///LI///yyP//8sj///LI/5vyyP9L8sj+h/LI/efyyP3v8sj97/LI/e/yyP3r8sj+P
+               /LI/9fyyP//8sj///LI///yyP//8sj///LI///yyP+j8sj9m/LI/ivyyP4r8sj+K/LI/ivyyP4r8
+               sj+K/LI/ifyyP4f8sj+H/LI/h/yyP4f8sj+H/LI/h/yyP4j8sj9v/LI/APyyPwD8sj8A/LI/APyy
+               PwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APuzQAD7s0AA+7NA
+               APuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAAAAAAA
+               AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               AAAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+               AAAAAAAA//8AAA==" type="image/x-icon">
+		<link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAAPyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyy
+		PwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8i/LI/M/yyPzP8sj8z/LI/M/yyPzP8sj8z/LI/
+		M/yyPzD8sj8w/LI/MPyyPzD8sj8w/LI/MPyyPzH8sj8l/LI/v/yyP8v8sj+8/LI/vfyyP738sj+9
+		/LI/vPyyP8T8sj/p/LI/7vyyP+78sj/u/LI/7vyyP+78sj/v/LI/0PyyP878sj9S/LI/DvyyPxD8
+		sj8O/LI/D/yyPw/8sj80/LI/6PyyP//8sj///LI///yyP//8sj///LI///yyP+f8sj/M/LI/RPyy
+		PwD8sj8T/LI/TfyyPzj8sj8A/LI/JPyyP+b8sj///LI//vyyP9H8sj/0/LI///yyP//8sj/m/LI/
+		zPyyP0X8sj8A/LI/Y/yyP0P8sj9o/LI/LfyyPyL8sj/m/LI///yyP/38sj+G/LI/4vyyP//8sj//
+		/LI/5vyyP8z8sj9F/LI/APyyP3D8sj8X/LI/UfyyPz38sj8h/LI/5vyyP//8sj/9/LI/g/yyP+H8
+		sj///LI///yyP+b8sj/M/LI/RfyyPwD8sj83/LI/b/yyP2b8sj8O/LI/JPyyP+b8sj///LI//vyy
+		P7b8sj/u/LI///yyP//8sj/m/LI/zPyyP0L8sj8A/LI/APyyPwf8sj8B/LI/APyyPyH8sj/l/LI/
+		//yyP//8sj///LI///yyP//8sj///LI/5vyyP9L8sj+h/LI/efyyP3v8sj97/LI/e/yyP3r8sj+P
+		/LI/9fyyP//8sj///LI///yyP//8sj///LI///yyP+j8sj9m/LI/ivyyP4r8sj+K/LI/ivyyP4r8
+		sj+K/LI/ifyyP4f8sj+H/LI/h/yyP4f8sj+H/LI/h/yyP4j8sj9v/LI/APyyPwD8sj8A/LI/APyy
+		PwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APyyPwD8sj8A/LI/APuzQAD7s0AA+7NA
+		APuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAD7s0AA+7NAAPuzQAAAAAAA
+		AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAA//8AAP//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+		AAAAAAAA//8AAA==">
+		<!-- All CSS Plugins -->
+		<link rel="stylesheet" type="text/css" href="css/plugin.css">
+		<!-- Main CSS Stylesheet -->
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<!-- Google Web Fonts  -->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
+	</head>
+	<body>
+
+		<!-- Menu Section Start -->
+		<header id="home">
+			<div class="header-top-area">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="logo">
+								<a href="index-2.html">0to1Code</a>
+							</div>
+						</div>
+						<div class="col-sm-9">
+							<div class="navigation-menu">
+								<div class="navbar">
+									<div class="navbar-header">
+										<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										</button>
+									</div>
+									<div class="navbar-collapse collapse">
+										<ul class="nav navbar-nav navbar-right">
+											<li>
+                                                <a class="smoth-scroll" href="https://twitter.com/0to1Code" target="_Blank">@0to1Code</a>
+                                            </li>
+                                            <li>
+                                                <a class="smoth-scroll" href="https://0to1code.wordpress.com/" target="_Blank">Blog</a>
+                                            </li>
+											<%if(isLoggedIn){%>
+											<li>
+												<a href="/?export=csv">Export as CSV</a>
+											</li>
+											<li>
+                                                <a href="/logout">Logout</a>
+											</li>
+                                            <%}%>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>

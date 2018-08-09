@@ -1,0 +1,50 @@
+<%- include('../partials/header', {isLoggedIn: isLoggedIn}) %>
+
+<section id="about" class="about section-space-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section-title">
+                    <h2>Code Coverage Report Generator</h2>
+                    <p>Developed by <a href="https://twitter.com/TheVishnuKumar" target="_blank">Vishnu Kumar</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="about-me-text margin-top-50">
+                    <p>
+                        The application provides the view of all code coverage from the organization and can generate excel sheet of all code coverage.
+                        <br/>
+                        <br/>
+                        Please feel free to reach me out for any suggestion/issues on <a href="https://twitter.com/TheVishnuKumar" target="_blank">Twitter</a> or via email vishnukumarramawat@gmail.com.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="about-me-text pattern-bg margin-top-50 margin-bottom-50">
+                    <div class="form-group">
+                        <label for="sel1">Environment:</label>
+                        <select class="form-control" id="envOption">
+                            <option value="https://login.salesforce.com/">Developer</option>
+                            <option value="https://login.salesforce.com/">Production</option>
+                            <option value="https://test.salesforce.com/">Sandbox</option>
+                        </select>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="doLogin();">Login</button>
+                </div>
+                <div class="about-me-text">
+                    Note: This application use salesforce tooling API to fetch code coverage details. None of your data is stored by this application.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<script>
+    function doLogin(){
+        window.location.href = '/oauth2/auth?instance='+$("#envOption").val();
+    }
+</script>
