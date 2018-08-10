@@ -66,7 +66,6 @@ app.get('/', function(req, res) {
                       return '"' + field.toString().replace(/\"/g, '""') + '"';
                     }).toString() + '\r\n');
                 });
-                
                 res.end();
             }
         });
@@ -106,9 +105,7 @@ app.get('/callback', function(req, res) {
         req.session.accessToken = conn.accessToken;
         req.session.refreshToken = conn.refreshToken;
         res.redirect('/');
-    });
-
-    
+    });    
 });
 
 app.get('/logout', function(req, res) {
@@ -133,8 +130,11 @@ function fetchTestCoverage(req, callback){
     conn.on("refresh", function(accessToken, res) {
         req.session.accessToken = accessToken;
     });
+    
+    var sortColumn = 'ApexClassOrTrigger.Name';
+    var sortOrder = 'ASC';
 
-    conn.tooling.query('SELECT Id,ApexClassOrTrigger.Name, NumLinesCovered, NumLinesUncovered,ApexClassorTriggerId FROM ApexCodeCoverageAggregate ORDER BY ApexClassOrTrigger.Name ASC', function(err, result) {
+    conn.tooling.query('SELECT Id,ApexClassOrTrigger.Name, NumLinesCovered, NumLinesUncovered,ApexClassorTriggerId FROM ApexCodeCoverageAggregate ORDER BY '+sortColumn+' '+sortOrder, function(err, result) {
         if (err) { return console.error(err); }
         return callback(result.records);
     });

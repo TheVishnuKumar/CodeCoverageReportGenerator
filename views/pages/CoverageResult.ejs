@@ -1,4 +1,20 @@
 <%- include('../partials/header', {isLoggedIn: isLoggedIn}) %>
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugin.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#ccResult').DataTable();
+        });
+    </script>
+
 <style>
     tr > td:nth-child(2){
         color: black;
@@ -16,7 +32,7 @@
     
     <div class="row">
         <div class="col-sm-12">
-            <table class="table">
+            <table id="ccResult"  class="table table-striped table-bordered table-hover">
                 <thead>
                     <tr>
                         <th>Index</th>
