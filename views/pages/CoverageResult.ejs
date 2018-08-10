@@ -1,16 +1,35 @@
+<%
+var totalNumLinesCovered = 0;
+var totalNumLinesUncovered = 0;
+results.forEach(function(res) { 
+    totalNumLinesCovered += res.NumLinesCovered;
+    totalNumLinesUncovered += res.NumLinesUncovered;
+});
+var overallPercent = Math.floor( ((totalNumLinesCovered / (totalNumLinesCovered + totalNumLinesUncovered) ) * 100) );
+
+var overallPerColor;
+if( overallPercent >= 0 && overallPercent <=50 ){
+    overallPerColor = 'red';
+}
+else if( overallPercent > 50 && overallPercent <=74 ){
+    overallPerColor = '#a2a21a';
+}
+else if( overallPercent >= 75 ){
+    overallPerColor = 'green';
+}
+%>
+
 <%- include('../partials/header', {isLoggedIn: isLoggedIn}) %>
-
-
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet"/>
 
 
-    <script>
-        $(document).ready(function() {
-            $('#ccResult').DataTable();
-        });
-    </script>
+<script>
+    $(document).ready(function() {
+        $('#ccResult').DataTable();
+    });
+</script>
 
 <style>
     tr > td:nth-child(2){
@@ -23,6 +42,7 @@
         <div class="col-sm-12">
             <div class="section-title">
                 <h4>Code Coverage Report Generator</h4>
+                <h2>Overall: <span style="color:<%=overallPerColor%>"><%=overallPercent%>%</span></h2>
             </div>
         </div>
     </div>
@@ -41,7 +61,7 @@
                 <tbody>
                     <%var i = 1;%>
                     <% results.forEach(function(res) { 
-                        var Percent = ((res.NumLinesCovered / (res.NumLinesCovered + res.NumLinesUncovered) ) * 100).toFixed(0);
+                        var Percent = Math.floor((res.NumLinesCovered / (res.NumLinesCovered + res.NumLinesUncovered) ) * 100);
                         if( isNaN(Percent) ){
                             Percent = 0;
                         }
