@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
     if ( typeof req.session.instanceUrl != 'undefined' ) {
         fetchTestCoverage(req, function(response){
             if ( typeof req.query.export == 'undefined' ){
-                res.render('pages/CoverageResult', { results : response, isLoggedIn: true});
+                res.render('pages/CoverageResult', { results : response, isLoggedIn: true,instanceUrl:req.session.instanceUrl });
             }else{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'text/csv');
@@ -104,6 +104,7 @@ app.get('/callback', function(req, res) {
         req.session.instanceUrl = conn.instanceUrl;
         req.session.accessToken = conn.accessToken;
         req.session.refreshToken = conn.refreshToken;
+
         res.redirect('/');
     });    
 });
