@@ -25,8 +25,8 @@ if (app.get('env') === 'production') {
 }
 else{
     redirectUri = 'http://localhost:4444/callback';
-    clientId = '';
-    clientSecret = '';
+    clientId = '3MVG9ZL0ppGP5UrCCqT.fLO5GU_630R_y3w6ui8SdXejhiIWGD11M8OcN95pM7199CJ0L0ZkeLDGF50b.zSSG';
+    clientSecret = '3708501846806616073';
 }
 
 app.use(session(sess));
@@ -78,6 +78,7 @@ app.get('/', function(req, res) {
 
 //Redirecting to Generate Outh acccess token
 app.get('/oauth2/auth', function(req, res) {
+    req.session.loginUrl = req.query.instance;
     var oauth2 = new jsforce.OAuth2({
         loginUrl : req.query.instance,
         clientId : clientId,
@@ -90,12 +91,13 @@ app.get('/oauth2/auth', function(req, res) {
 //It will be called after salesforce login as the callback and set the session
 app.get('/callback', function(req, res) {
     var code = req.param('code');
-
     var oauth2 = new jsforce.OAuth2({
+        loginUrl : req.session.loginUrl,
         clientId : clientId,
         clientSecret : clientSecret,
         redirectUri : redirectUri
     });
+
 
     var conn = new jsforce.Connection({ oauth2 : oauth2 });
     conn.authorize(code, function(err, userInfo) {
@@ -105,6 +107,8 @@ app.get('/callback', function(req, res) {
         req.session.refreshToken = conn.refreshToken;
         res.redirect('/');
     });
+
+    
 });
 
 app.get('/logout', function(req, res) {
