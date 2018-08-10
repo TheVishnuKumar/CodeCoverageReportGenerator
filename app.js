@@ -19,14 +19,14 @@ if (app.get('env') === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true // serve secure cookies
 
-    redirectUri = 'https://codecoveragereportgenerator.herokuapp.com/callback';
-    clientId = '3MVG9Y6d_Btp4xp5Z6_IY7XddN.bMe4mBgqqPM.mw9zzuIdgD4AwwngXjK.wNVb5tNL6jxuK2eW.ZKynKNIn3';
-    clientSecret = '4734481915698834797';
+    redirectUri = process.env.redirectUri;
+    clientId = process.env.clientId;
+    clientSecret = process.env.clientSecret;
 }
 else{
     redirectUri = 'http://localhost:4444/callback';
-    clientId = '3MVG9ZL0ppGP5UrCCqT.fLO5GU_630R_y3w6ui8SdXejhiIWGD11M8OcN95pM7199CJ0L0ZkeLDGF50b.zSSG';
-    clientSecret = '3708501846806616073';
+    clientId = '';
+    clientSecret = '';
 }
 
 app.use(session(sess));
