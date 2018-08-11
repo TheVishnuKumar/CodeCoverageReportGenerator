@@ -40,6 +40,7 @@ app.get('/', function(req, res) {
             }else{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'text/csv');
+                res.setHeader('Content-disposition', 'attachment; filename=Code Coverage Report.csv');
                 
                 var headers = ['Index','Class/Trigger Name','Lines','Coverage'];
                 var row = [];
@@ -66,6 +67,7 @@ app.get('/', function(req, res) {
                       return '"' + field.toString().replace(/\"/g, '""') + '"';
                     }).toString() + '\r\n');
                 });
+                
                 res.end();
             }
         });
