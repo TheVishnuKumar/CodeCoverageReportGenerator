@@ -7,14 +7,8 @@ results.forEach(function(res) {
 });
 var overallPercent = Math.floor( ((totalNumLinesCovered / (totalNumLinesCovered + totalNumLinesUncovered) ) * 100) );
 
-var overallPerColor;
-if( overallPercent >= 0 && overallPercent <=50 ){
-    overallPerColor = 'red';
-}
-else if( overallPercent > 50 && overallPercent <=74 ){
-    overallPerColor = '#a2a21a';
-}
-else if( overallPercent >= 75 ){
+var overallPerColor = 'red';
+if( overallPercent >= 75 ){
     overallPerColor = 'green';
 }
 %>
@@ -65,19 +59,13 @@ else if( overallPercent >= 75 ){
                         if( isNaN(Percent) ){
                             Percent = 0;
                         }
-                        var rowColor;
-                        if( Percent >= 0 && Percent <=50 ){
-                            rowColor = 'danger';
-                        }
-                        else if( Percent > 50 && Percent <=74 ){
-                            rowColor = 'warning';
-                        }
-                        else if( Percent >= 75 ){
-                            rowColor = 'success';
+                        var rowColor = 'red';
+                        if( Percent >= 75 ){
+                            rowColor = 'green';
                         }
                     %>
 
-                    <tr class="<%= rowColor %>">
+                    <tr style="color:<%= rowColor %>">
                         <td>
                             <%= i %>
                             <%i=i+1;%>
