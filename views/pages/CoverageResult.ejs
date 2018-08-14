@@ -64,22 +64,23 @@ if( overallPercent >= 75 ){
                             rowColor = 'green';
                         }
                     %>
-
-                    <tr style="color:<%= rowColor %>">
-                        <td>
-                            <%= i %>
-                            <%i=i+1;%>
-                        </td>
-                        <td>
-                            <a href="<%=instanceUrl%>/<%=res.ApexClassOrTriggerId%>" style="color:blue;" target="_Blank"><%= res.ApexClassOrTrigger.Name %></a>
-                        </td>
-                        <td>
-                            <%= res.NumLinesCovered %>   / <%= res.NumLinesUncovered %>   
-                        </td>
-                        <td>
-                            <%=  Percent %>%
-                        </td>
-                    </tr>
+                    <% if( res.NumLinesCovered != 0 || res.NumLinesUncovered ){ %>
+                        <tr style="color:<%= rowColor %>">
+                            <td>
+                                <%= i %>
+                                <%i=i+1;%>
+                            </td>
+                            <td>
+                                <a href="<%=instanceUrl%>/<%=res.ApexClassOrTriggerId%>" style="color:blue;" target="_Blank"><%= res.ApexClassOrTrigger.Name %></a>
+                            </td>
+                            <td>
+                                <%= res.NumLinesCovered %>   / <%= res.NumLinesUncovered %>   
+                            </td>
+                            <td>
+                                <%=  Percent %>%
+                            </td>
+                        </tr>
+                    <%}%>
 
                     <% }); %>
                 </tbody>

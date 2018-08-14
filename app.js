@@ -137,7 +137,7 @@ function fetchTestCoverage(req, callback){
     var sortColumn = 'ApexClassOrTrigger.Name';
     var sortOrder = 'ASC';
 
-    conn.tooling.query('SELECT Id,ApexClassOrTrigger.Name, NumLinesCovered, NumLinesUncovered,ApexClassorTriggerId FROM ApexCodeCoverageAggregate ORDER BY '+sortColumn+' '+sortOrder, function(err, result) {
+    conn.tooling.query('SELECT Id,ApexClassOrTrigger.Name, NumLinesCovered, NumLinesUncovered,ApexClassorTriggerId FROM ApexCodeCoverageAggregate  ORDER BY '+sortColumn+' '+sortOrder, function(err, result) {
         if (err) { return console.error(err); }
         return callback(result.records);
     });
