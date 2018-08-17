@@ -70,7 +70,9 @@
         <script type="text/javascript" src="js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
 	</head>
 	<body>
 
@@ -110,7 +112,12 @@
 											<li>
                                                 <a href="/logout">Logout</a>
 											</li>
-                                            <%}%>
+											<%}%>
+											<li>
+												<a data-toggle="modal" data-target="#myModal" style="cursor:pointer;">
+													<span class="glyphicon glyphicon-info-sign" style="font-size: 18px;"></span>
+												</a>
+											</li>
 										</ul>
 									</div>
 								</div>
@@ -120,3 +127,32 @@
 				</div>
 			</div>
 		</header>
+
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" role="dialog" style="z-index: 10000;">
+			<div class="modal-dialog">
+			  <!-- Modal content-->
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">About the Developer</h4>
+				</div>
+				<div class="modal-body">
+				  <p>This app/website is developed and maintained by <a href="https://twitter.com/TheVishnuKumar" target="_Blank" style="color: #337ab7;font-weight: bold;">@Vishnu Kumar</a>. Please feel free to reach out to me for any issue or suggestions.</p>
+					<br/>
+					<p>Take a look on my all apps <a style="color: #337ab7;font-weight: bold;" href="http://vishnukumar.0to1code.com/">here</a>.</p>
+					<br/>
+					<ul class="social-icon margin-bottom-30">
+						<li><a href="https://www.facebook.com/Myself.Vishnu.Kumar" target="_blank" class="facebook"><i class="icon-social-facebook"></i></a></li>
+						<li><a href="https://twitter.com/TheVishnuKumar" target="_blank" class="twitter"><i class="icon-social-twitter"></i></a></li>
+						<li><a href="https://www.linkedin.com/in/vishnukumarramawat/" target="_blank" class="linkedin"><i class="icon-social-linkedin"></i></a></li>
+						<li><a href="https://github.com/TheVishnuKumar" target="_blank" class="linkedin"><i class="icon-social-github"></i></a></li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			  </div>
+			  
+			</div>
+		  </div>
