@@ -64,7 +64,7 @@ if( overallPercent >= 75 ){
                             rowColor = 'green';
                         }
                     %>
-                    <% if( res.NumLinesCovered != 0 || res.NumLinesUncovered ){ %>
+                    <% if( ( res.NumLinesCovered != 0 || res.NumLinesUncovered ) && res.ApexClassOrTrigger ){ %>
                         <tr style="color:<%= rowColor %>">
                             <td>
                                 <%= i %>
